@@ -1,26 +1,901 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+    font-family: "Nunito", sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: "Nunito", sans-serif;
+    background: url("/main.jpg") no-repeat center center;
+    background-size: cover;
+    color: wheat;
+    transition: all 300ms ease-in-out;
+}
+
+body.light-mode {
+    background: url("/light.jpg") no-repeat center center;
+    background-size: cover;
+    color: black;
+}
+
+body.light-mode .nav-white {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.gradient-text {
+    background: linear-gradient(to right, #f3e9d2, #d99149, #f3e9d2);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-family: "Nunito", sans-serif;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+    will-change: background-position;
+}
+
+body.light-mode .login-card {
+    background: rgba(0, 0, 0, 0.05);
+    color: black;
+}
+
+body.light-mode .gradient-text {
+    background: linear-gradient(to right,
+            #000000,
+            #c4c3c3,
+            #000000);
+    /* Blackish gradient */
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+}
+
+@keyframes animate-text {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+.nav-li {
+    position: relative;
+    /* Crucial: sets the anchor point for the underline */
+    cursor: pointer;
+    /* Optional padding just to give the underline some breathing room */
+    padding-bottom: 4px;
+}
+
+/* Create the hidden underline */
+.nav-li::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    /* Your thin underline thickness */
+    background-color: wheat;
+    /* Shrink it to nothing horizontally, anchored to the center */
+    transform: scaleX(0);
+    transform-origin: center;
+    /* Smooth transition */
+    transition: transform 500ms linear;
+}
+
+body.light-mode .nav-li::after {
+    background-color: black;
+}
+
+/* Spread it out on hover */
+.nav-li:hover::after {
+    transform: scaleX(1);
+}
+
+body.light-mode .nav-burg {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Fix freeze on text selection for animated gradient text */
+.gradient-text::selection {
+    -webkit-text-fill-color: #ffffff;
+    /* Gives text a solid color during highlight */
+    background-color: rgba(219, 145, 73, 0.4);
+    /* Custom highlight background color */
+}
+
+/* Make sure it applies to the light mode gradient text as well */
+body.light-mode .gradient-text::selection {
+    -webkit-text-fill-color: #000000;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .work-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.work-card {
+    aspect-ratio: 33 / 65;
+    /* keeps your ratio responsive at any screen width */
+}
+
+body.light-mode .admin-work {
+    color: black;
+}
+
+body.light-mode .x-border {
+    border: 2px solid;
+}
+
+textarea::placeholder {
+    color: wheat;
+    opacity: 0.6;
+}
+
+body.light-mode textarea::placeholder {
+    color: #000000;
+}
+
+.container {
+    height: auto;
+    width: 55vw;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    display: flex;
+}
+
+.left {
+    height: auto;
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    border-right: 2px solid wheat;
+    margin: auto 15px;
+    gap: 7vh;
+    font-size: 1.9vh;
+}
+
+.address {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 25% 25% 25% 25%;
+    color: wheat;
+    gap: .9vh;
+    margin-top: 5px;
+}
+
+#address-text {
+    grid-row: 2 / 3;
+    margin: auto;
+}
+
+#first-address {
+    grid-row: 3 / 4;
+    margin: auto;
+}
+
+#second-address {
+    grid-row: 4 / 5;
+    margin: auto;
+}
+
+.phone {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 33% 33% 33%;
+    color: wheat;
+    gap: 0.5vh;
+}
+
+#phone-text {
+    grid-row: 2 / 3;
+    margin: auto;
+}
+
+#first-number {
+    grid-row: 3 / 4;
+    margin: auto;
+}
+
+.email {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 25% 25% 25% 25%;
+    color: wheat;
+}
+
+#email-text {
+    grid-row: 2 / 3;
+    margin: auto;
+}
+
+#first-mail {
+    grid-row: 3 / 4;
+    margin: auto;
+}
+
+#second-mail {
+    grid-row: 4 / 5;
+    margin: auto;
+}
+
+.fas {
+    color: wheat;
+    margin: auto;
+}
+
+.right {
+    width: 65%;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form h2 {
+    color: wheat;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.contact-form textarea {
+    resize: none;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid wheat;
+    color: wheat;
+    font-size: 1em;
+    outline: none;
+}
+
+.contact-form button {
+    padding: 10px;
+    background-color: wheat;
+    color: black;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #d2b48c;
+    border-radius: 15px;
+}
+
+.contact-form .subtext {
+    color: #f5deb3;
+    font-size: 1em;
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+body.light-mode .left,
+body.light-mode .address,
+body.light-mode .phone,
+body.light-mode .email,
+body.light-mode .fas,
+body.light-mode .contact-form h2,
+body.light-mode .subtext,
+body.light-mode .contact-form input,
+body.light-mode .contact-form textarea {
+    color: black;
+    border-color: black;
+}
+
+body.light-mode .contact-form button {
+    background-color: black;
+    color: white;
+    transition: all 300ms ease-in-out;
+}
+
+body.light-mode .contact-form button:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: black;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.fab {
+    color: wheat;
+    font-size: 3vh;
+    transition: all .3s ease;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.instruction {
+    text-align: center;
+    color: wheat;
+    font-size: larger;
+    margin: auto;
+}
+
+.fab:hover {
+    font-size: 3.5vh;
+}
+
+body.light-mode .fab,
+body.light-mode .instruction {
+    color: black;
+}
+
+/* Responsive Styles for Tablets and Mobile Screens */
+@media (max-width: 1024px) {
+    .container {
+        width: 90vw;
+        /* Take up more screen space on smaller displays */
+        max-width: 500px;
+        /* Keep form width clean and contained */
+        flex-direction: column;
+        /* Stack contact info and form vertically */
+        padding: 2rem 1.5rem;
+        /* Add inner spacing */
+    }
+
+    /* Move Form (right) to the top */
+    .right {
+        width: 100%;
+        padding: 0;
+        order: 1;
+        /* Appears FIRST on top */
+    }
+
+    /* Move Contact Details (left) to the bottom */
+    .left {
+        width: 100%;
+        border-right: none;
+        /* Remove vertical line */
+        margin: 2rem 0 0 0;
+        /* Add top spacing between form and details */
+        order: 2;
+        /* Appears SECOND below form */
+        gap: 2.5rem;
+    }
+
+    .instruction {
+        font-size: 0.85rem;
+        /* Slightly shrink instruction text on small screens */
+    }
+}
+
+.service-container {
+    position: relative;
+    width: auto;
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+.service-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 2vh;
+}
+
+.service-container li {
+    list-style: none;
+    color: wheat;
+}
+
+body.light-mode .service-container li {
+    color: black;
+}
+
+.service-container h2 {
+    background: linear-gradient(to right, #f3e9d2, #d99149, #f3e9d2);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+    margin-bottom: 1vh;
+    border-bottom: 2px solid wheat;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+    padding: 1.5vh;
+}
+
+body.light-mode .service-container h2 {
+    background: linear-gradient(to right, #000000, #69666694, #000000);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+    border-bottom: 2px solid black;
+}
+
+.service-container h3 {
+    background: linear-gradient(to right, #f3e9d2, #d99149, #f3e9d2);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+    margin-bottom: -0.5vh;
+}
+
+body.light-mode .service-container h3 {
+    background: linear-gradient(to right, #000000, #69666694, #000000);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+}
+
+.promise-label {
+    background: linear-gradient(90deg, #f9d423, #ff4e50);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+    font-size: 2.7vh;
+}
+
+body.light-mode .promise-label {
+    background: linear-gradient(90deg, #080ceb, #008ead);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+}
+
+.about-container {
+    position: relative;
+    width: 90vw;
+    max-width: 700px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: .2rem;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* body.light-mode .about-container {
+    background: rgba(255, 255, 255, 0.25);
+} */
+
+.about-container h3 {
+    background: linear-gradient(to right, #f3e9d2, #d99149, #f3e9d2);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+    font-size: 2rem;
+}
+
+body.light-mode .about-container h3 {
+    background: linear-gradient(to right, #000000, #c4c3c3, #000000);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+}
+
+.about-name {
+    background: linear-gradient(90deg, #f9d423, #ff4e50);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+    font-size: 2rem;
+}
+
+body.light-mode .about-name {
+    background: linear-gradient(90deg, #2193b0, #6dd5ed);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+}
+
+.about-inactive {
+    text-decoration: line-through;
+}
+
+.about-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    /* border-radius: 12px; */
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    transition: transform 0.8s;
+}
+
+.about-container:hover::before {
+    transform: rotateY(0deg);
+}
+
+.about-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3vh;
+    opacity: 0;
+    transition: all 0.8s ease;
+}
+
+.about-back p {
+    font-family: "Nunito", sans-serif;
+    font-style: italic;
+    text-align: center;
+    font-size: clamp(1rem, 1.5vw, 3rem);
+}
+
+.about-container:hover .about-back {
+    opacity: 1;
+    transform: rotateY(0deg);
+}
+
+@media (max-width: 783px) {
+    .about-container {
+        width: 92vw;
+        padding: 1.2rem;
+    }
+}
+
+.feedback-container {
+    width: 90vw;
+    max-width: 500px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    padding: 2rem;
+    text-align: center;
+}
+
+/* body.light-mode .feedback-container {
+    background: rgba(255, 255, 255, 0.25);
+} */
+
+.feedback-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid wheat;
+    color: wheat;
+    padding: 10px 0;
+    outline: none;
+    font-size: 1em;
+}
+
+body.light-mode .feedback-input {
+    border-bottom-color: black;
+    color: black;
+}
+
+.feedback-submit {
+    padding: 3px 15px;
+    border-radius: 999px;
+    border: 2px solid wheat;
+    background: transparent;
+    color: wheat;
+    cursor: pointer;
+    align-self: center;
+}
+
+body.light-mode .feedback-submit {
+    border-color: black;
+    color: black;
+}
+
+.feedback-heading {
+    color: wheat;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+body.light-mode .feedback-heading {
+    color: black;
+}
+
+.feedback-video-placeholder {
+    width: 100%;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-top: 1.5rem;
+}
+
+.learnmore-container {
+    max-width: 900px;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    padding: 2rem;
+    text-align: center;
+}
+
+body.light-mode .learnmore-container {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.learnmore-container h3 {
+    font-size: 3vh;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #0a3d62, #fbc531);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+}
+
+body.light-mode .learnmore-container h3 {
+    background: linear-gradient(to right, #1a2a6c, #ffb20b);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+}
+
+.learnmore-container p {
+    font-size: 2.3vh;
+    color: wheat;
+    line-height: 1.6;
+}
+
+body.light-mode .learnmore-container p {
+    color: black;
+}
+
+.lm-highlight {
+    background: linear-gradient(to right, #89f7fe, #66a6ff);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+}
+
+body.light-mode .lm-highlight {
+    background: linear-gradient(to right, #ff7519, #f8230b);
+    background-size: 200% auto;
+    background-position: 0% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-text 3s linear infinite;
+}
+
+.lm-arabic {
+    font-size: 2.5vw;
+}
+
+@media (max-width: 783px) {
+    .learnmore-container {
+        width: 85vw;
+    }
+
+    .learnmore-container p {
+        font-size: 1.3vh;
+        padding: 5px;
+    }
+
+    .learnmore-container h3 {
+        font-size: 2vh;
+    }
+}
+
+.feedback-list {
+    width: 100%;
+    height: 160px;
+    overflow-y: auto;
+    margin-top: 1rem;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+body.light-mode .feedback-list {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+.feedback-card-message {
+    font-size: 0.95rem;
+}
+
+.feedback-card-stars {
+    font-size: 0.85rem;
+}
+
+.feedback-average {
+    color: wheat;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+body.light-mode .feedback-average {
+    color: black;
+}
+
+.splash-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.light-mode .splash-screen {
+    background: #fff;
+}
+
+.splash-text {
+    font-size: 15vw;
+    font-weight: 900;
+    font-family: "Nunito", sans-serif;
+    background: linear-gradient(to right, #d99149, #f3e9d2);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: splash-cycle 1.2s ease-in-out infinite alternate;
+}
+
+body.light-mode .splash-text {
+    background: linear-gradient(to right, #000000, #444444);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes splash-cycle {
+    0% {
+        clip-path: inset(0 100% 0 0);
+    }
+
+    100% {
+        clip-path: inset(0 0% 0 0);
+    }
+}
+
+#intro-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Added transition for the smooth curtain pull */
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* This class pulls the screen up and away */
+#intro-splash.splash-exit {
+    transform: translateY(-100%);
+}
+
+body.light-mode #intro-splash {
+    background: #fff;
+}
+
+.intro-word {
+    font-size: 5vw;
+    font-weight: 900;
+    font-family: "Nunito", sans-serif;
+    background: linear-gradient(to right, #d99149, #f3e9d2, #d99149);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: intro-fade 0.9s ease, loader-sweep 1s linear infinite;
+}
+
+body.light-mode .intro-word {
+    background: linear-gradient(to right, #000000, #444444, #000000);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+@keyframes intro-fade {
+    0% {
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
