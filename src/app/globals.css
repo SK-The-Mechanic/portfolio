@@ -755,6 +755,10 @@ body.light-mode .lm-highlight {
         width: 85vw;
     }
 
+    .feedback-input {
+        font-size: .8em;
+    }
+
     .learnmore-container p {
         font-size: 1.3vh;
         padding: 5px;

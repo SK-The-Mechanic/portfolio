@@ -2,8 +2,15 @@
 
 import { useState, useEffect } from "react";
 
-const words = ["Tech", "Met", "Illusion"];
-const WORD_DURATION = 900;
+// const words = ["", "Tech", "Met", "Illusion", ""];
+const words = [
+    { text: "", duration: 300 },
+    { text: "Tech", duration: 900 },
+    { text: "Met", duration: 900 },
+    { text: "Illusion", duration: 900 },
+    { text: "", duration: 400 },
+];
+// const WORD_DURATION = 900;
 const EXIT_DURATION = 800; // Matches the CSS transition time
 
 export default function IntroSplash() {
@@ -14,9 +21,10 @@ export default function IntroSplash() {
     useEffect(() => {
         // Step 1: Cycle through all the words
         if (index < words.length) {
-            const timer = setTimeout(() => setIndex((i) => i + 1), WORD_DURATION);
+            // const timer = setTimeout(() => setIndex((i) => i + 1), WORD_DURATION);
+            const timer = setTimeout(() => setIndex((i) => i + 1), words[index].duration);
             return () => clearTimeout(timer);
-        } 
+        }
         // Step 2: Trigger the curtain pull animation, then remove from DOM
         else {
             setIsExiting(true);
@@ -32,7 +40,8 @@ export default function IntroSplash() {
         <div id="intro-splash" className={isExiting ? "splash-exit" : ""}>
             {index < words.length && (
                 <h1 key={index} className="intro-word">
-                    {words[index]}
+                    {/* {words[index]} */}
+                    {words[index].text}
                 </h1>
             )}
         </div>
