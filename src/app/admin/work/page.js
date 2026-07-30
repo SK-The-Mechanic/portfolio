@@ -101,7 +101,7 @@ export default function AdminWorkPage() {
                 />
 
                 <textarea
-                    placeholder="Full description"
+                    placeholder="Full description (leave a blank line between paragraphs, or start lines with - for bullet points)"
                     value={form.fullDescription}
                     onChange={(e) => setForm({ ...form, fullDescription: e.target.value })}
                     required

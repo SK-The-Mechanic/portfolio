@@ -17,7 +17,7 @@ export default function AboutPage() {
     if (!content) return null;
 
     return (
-        <div className="min-h-[92vh] w-full flex items-center justify-center py-12 px-6">
+        <div className="min-h-[92vh] w-full flex items-center justify-center py-6 px-6">
             <div
                 className="about-container"
                 style={{ "--about-photo": `url(${content.photo})` }}
@@ -29,7 +29,7 @@ export default function AboutPage() {
                     Hi, I'm <span className="about-name">{content.name}</span>
                 </p>
 
-                <p className="flex flex-wrap justify-center gap-2">
+                <p className="flex flex-wrap justify-center gap-1">
                     {content.roles.map((role, i) => (
                         <span key={i}>
                             <span className={!role.active ? "about-inactive" : ""}>
@@ -42,7 +42,7 @@ export default function AboutPage() {
 
                 <p>{content.bio}</p>
 
-                <h4 className=" text-2xl font-bold gradient-text">🛠 Skills</h4>
+                <h4 className=" text-xl font-bold gradient-text">🛠 Skills</h4>
                 <ul>
                     {content.skills.map((skill, i) => (
                         <li key={i} className={!skill.active ? "about-inactive" : ""}>
@@ -51,7 +51,7 @@ export default function AboutPage() {
                     ))}
                 </ul>
 
-                <h4 className=" text-2xl font-bold gradient-text">📦 Tools I Use</h4>
+                <h4 className=" text-xl font-bold gradient-text">📦 Tools I Use</h4>
                 <ul>
                     {content.tools.map((tool, i) => (
                         <li key={i} className={!tool.active ? "about-inactive" : ""}>

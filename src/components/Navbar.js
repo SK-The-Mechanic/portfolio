@@ -3,9 +3,19 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Navbar({ theme, toggleTheme }) {
     const [menuOpen, setMenuOpen] = useState(false);
+    const pathname = usePathname();
+
+    const navLinks = [
+        { name: "Work", href: "/work" },
+        { name: "About", href: "/about" },
+        { name: "Service", href: "/service" },
+        { name: "Contact", href: "/contact" },
+        { name: "Feedback", href: "/feedback" },
+    ];
 
     return (
         <nav className="sticky top-0 h-[8vh] w-full flex justify-between items-center px-6 backdrop-blur-[5px] bg-white/10 nav-white z-50">
@@ -51,12 +61,18 @@ export default function Navbar({ theme, toggleTheme }) {
                     }
                 `}
             >
-                <li className="nav-li whitespace-nowrap"><Link href="/work">Work</Link></li>
-                <li className="nav-li whitespace-nowrap"><Link href="/about">About</Link></li>
-                <li className="nav-li whitespace-nowrap"><Link href="/service">Service</Link></li>
-                <li className="nav-li whitespace-nowrap"><Link href="/contact">Contact</Link></li>
-                <li className="nav-li whitespace-nowrap"><Link href="/feedback">Feedback</Link></li>
-                {/* <li className="nav-li whitespace-nowrap"><Link href="/login">Login/Register</Link></li> */}
+                {navLinks.map((link) => {
+                    const isActive = pathname === link.href;
+                    return (
+                        <li
+                            key={link.href}
+                            className={`nav-li whitespace-nowrap pb-1 transition-all ${isActive ? "border-b-2 border-current" : ""
+                                }`}
+                        >
+                            <Link href={link.href}>{link.name}</Link>
+                        </li>
+                    );
+                })}
 
                 <li
                     onClick={toggleTheme}

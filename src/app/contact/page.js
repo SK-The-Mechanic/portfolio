@@ -103,7 +103,7 @@ export default function ContactPage() {
                         />
 
                         <textarea
-                            placeholder="Your Message"
+                            placeholder="Your Message. If possible please try to provide your WhatsApp or Telegram number here"
                             rows={5}
                             value={form.message}
                             onChange={(e) => setForm({ ...form, message: e.target.value })}

@@ -168,7 +168,7 @@ export default function AdminAboutPage() {
                 <button
                     type="submit"
                     disabled={status === "saving"}
-                    className="h-11 rounded-full border-2 border-[wheat] gradient-text font-bold disabled:opacity-50"
+                    className="h-11 rounded-full border-2 border-[wheat] gradient-text font-bold disabled:opacity-50 x-border"
                 >
                     {status === "saving" ? "Saving..." : "Save About Page"}
                 </button>

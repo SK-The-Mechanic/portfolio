@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import { renderFormattedText } from "@/lib/formatText";
 
 export default function ProjectCard({ project, isExpanded, onToggle, router }) {
     const { name, shortDescription, fullDescription, links, videoUrl, status } = project;
@@ -44,7 +45,10 @@ export default function ProjectCard({ project, isExpanded, onToggle, router }) {
                         transition={{ duration: 0.35 }}
                         className="overflow-hidden"
                     >
-                        <p className="text-sm text-[wheat] admin-work mt-4">{fullDescription}</p>
+                        {/* <p className="text-sm text-[wheat] admin-work mt-4">{fullDescription}</p> */}
+                        <div className="text-sm text-[wheat] admin-work mt-4">
+                            {renderFormattedText(fullDescription)}
+                        </div>
 
                         <div className="flex flex-wrap gap-2 mt-4">
                             {links.map((l, i) => (
