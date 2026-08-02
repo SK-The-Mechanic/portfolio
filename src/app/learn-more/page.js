@@ -7,10 +7,8 @@ export default function LearnMorePage() {
                     something special for you.
                 </h3>
                 <p>
-                    You might be wondering why I look mysterious, why I wear a mask in my
-                    professional portfolio. Well, I believe in the concept of{" "}
-                    <b className="lm-highlight">NAZAR</b> — it's a term in Islam, and that's
-                    why I don't share my picture.
+                    I build I break and build again. You can call call me{" "}
+                    <b className="lm-highlight">MECHANIC</b>, pal.
                     <br /><br />
                     I was born in <b>Bagerhat</b>, a small town in <b>Bangladesh</b>, and
                     raised in <b>Khulna</b> — that's my real hometown. Right now, I'm in{" "}

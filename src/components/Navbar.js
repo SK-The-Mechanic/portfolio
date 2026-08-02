@@ -18,7 +18,7 @@ export default function Navbar({ theme, toggleTheme }) {
     ];
 
     return (
-        <nav className="sticky top-0 h-[8vh] w-full flex justify-between items-center px-6 backdrop-blur-[5px] bg-white/10 nav-white z-50">
+        <nav className="fixed top-0 h-[8vh] w-full flex justify-between items-center px-6 backdrop-blur-[5px] bg-white/10 nav-white z-50">
             <Link href="/">
                 <Image
                     src={theme === "light" ? "/sklogo2.png" : "/sklogo1.png"}

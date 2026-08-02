@@ -28,7 +28,12 @@ export default function ThemeProvider({ children }) {
             <IntroSplash />
             <SplashScreen />
             <Navbar theme={theme} toggleTheme={toggleTheme} />
-            {children}
+            <div className="page-scroll">
+                {children}
+            </div>
+            <p className="copyright-tag">
+                © {new Date().getFullYear()} SK Tech. All rights reserved.
+            </p>
         </>
     );
 }

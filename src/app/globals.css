@@ -12,6 +12,7 @@ body {
     background-attachment: fixed;
     color: wheat;
     transition: all 300ms ease-in-out;
+    overflow: hidden;
 }
 
 body.light-mode {
@@ -697,10 +698,6 @@ body.light-mode .feedback-heading {
     text-align: center;
 }
 
-body.light-mode .learnmore-container {
-    background: rgba(255, 255, 255, 0.25);
-}
-
 .learnmore-container h3 {
     font-size: 3vh;
     margin-bottom: 1.5rem;
@@ -928,4 +925,26 @@ body.light-mode .intro-word {
 
 .description-list li {
     margin-bottom: 0.25rem;
+}
+
+.copyright-tag {
+    position: fixed;
+    bottom: 8px;
+    right: 12px;
+    font-size: 0.7rem;
+    color: wheat;
+    opacity: 0.5;
+    z-index: 40;
+    pointer-events: none;
+}
+
+body.light-mode .copyright-tag {
+    color: black;
+}
+
+.page-scroll {
+    margin-top: 8vh;
+    height: calc(100vh - 8vh);
+    overflow-y: auto;
+    scrollbar-gutter: stable;
 }
