@@ -135,7 +135,7 @@ export default function AdminWorkPage() {
                 </button>
 
                 <input
-                    placeholder="YouTube embed URL (optional)"
+                    placeholder="YouTube link (optional) — e.g. https://youtube.com/watch?v=..."
                     value={form.videoUrl}
                     onChange={(e) => setForm({ ...form, videoUrl: e.target.value })}
                     className="h-11 rounded-lg bg-white/10 backdrop-blur-[5px] border border-white/20 px-4 nav-white"

@@ -1,10 +1,5 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import { Nunito } from "next/font/google";
-import IntroSplash from "@/components/IntroSplash";
-import Navbar from "@/components/Navbar";
-import SplashScreen from "@/components/SplashScreen";
+import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -12,20 +7,13 @@ const nunito = Nunito({
     weight: ["400", "600", "700", "800"],
 });
 
+export const metadata = {
+    title: "SK Tech — Web Development & Digital Solutions",
+    description:
+        "SK Tech builds fast, modern websites and web apps — from portfolios to full-stack platforms with custom admin panels.",
+};
+
 export default function RootLayout({ children }) {
-    const [theme, setTheme] = useState("dark");
-
-    useEffect(() => {
-        const saved = localStorage.getItem("theme");
-        if (saved) setTheme(saved);
-    }, []);
-
-    const toggleTheme = () => {
-        const next = theme === "dark" ? "light" : "dark";
-        setTheme(next);
-        localStorage.setItem("theme", next);
-    };
-
     return (
         <html lang="en">
             <head>
@@ -34,11 +22,8 @@ export default function RootLayout({ children }) {
                     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
                 />
             </head>
-            <body className={`${nunito.className} ${theme === "light" ? "light-mode" : ""}`}>
-                <IntroSplash />
-                <SplashScreen />
-                <Navbar theme={theme} toggleTheme={toggleTheme} />
-                {children}
+            <body className={nunito.className}>
+                <ThemeProvider>{children}</ThemeProvider>
             </body>
         </html>
     );

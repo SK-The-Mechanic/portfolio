@@ -65,13 +65,14 @@ export default function ProjectCard({ project, isExpanded, onToggle, router }) {
                         </div>
 
                         {videoUrl && (
-                            <div className="mt-4 aspect-video">
-                                <iframe
-                                    src={videoUrl}
-                                    className="w-full h-full rounded-lg"
-                                    allowFullScreen
-                                />
-                            </div>
+                            <a
+                                href={videoUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-4 inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-white/10 backdrop-blur-[5px] border border-white/20 nav-white"
+                            >
+                                <i className="fab fa-youtube"></i> Watch on YouTube
+                            </a>
                         )}
                     </motion.div>
                 )}
